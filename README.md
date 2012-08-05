@@ -71,6 +71,12 @@ Other methods:
 
 
 
+Feedback
+--------
+
+I'd love to know if you're using this somewhere. Drop me a line at [@rich_harris](http://twitter.com/rich_harris). Especially if you find bugs tec.
+
+
 License
 -------
 
