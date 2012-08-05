@@ -1,6 +1,26 @@
 /*jslint white: true */
 
-/* BOILERPLATE STUFF.... */
+// Rich Harris (@rich_harris), 2012. Released under the WTFPL license:
+//
+//
+//            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+//                    Version 2, December 2004
+//
+// Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+//
+// Everyone is permitted to copy and distribute verbatim or modified
+// copies of this license document, and changing it is allowed as long
+// as the name is changed.
+//
+//            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+//   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+//
+//  0. You just DO WHAT THE FUCK YOU WANT TO.
+
+
+
+
+
 
 var Neo = ( function () {
 
@@ -266,7 +286,7 @@ var Neo = ( function () {
 		},
 
 		// if you want to reverse the effect of a matrix, for some reason, you need to find its inverse:
-		
+
 		inverse: function () {
 			var
 				m = this.elements,
@@ -339,71 +359,6 @@ var Neo = ( function () {
 
 		toString: function () {
 			return 'matrix(' + this.elements.join( ',' ) + ')';
-		},
-
-		toCSSString: function ( precision ) {
-			var
-				r2d = 57.29577951308232, // ( 180 / Math.PI ) - multiply by this to convert radians to degrees
-				d = this.decompose(),
-				m = this.elements,
-				limit = +( '1e-' + ( precision || 7 ) ),
-				s = function ( float ) {
-					// We use toFixed() to ensure that 1.99999999999 and 2.0000000000001 (for example) are treated as the same, e.g. in scaleX versus scaleY.
-					// The unary + operator turns it back to a sensible number, e.g. 1.0000000000 becomes 1
-					return +( float ? float.toFixed( precision || 7 ) : false );
-				},
-
-				rotate     = ( ( d.rotate > limit ) && ( d.rotate < ( 360 - limit ) ) ) ? s( d.rotate * r2d ) + 'deg' : false,
-
-				skewX      = ( ( d.shear > limit ) || ( d.shear < -limit ) ) ? s( Math.atan( d.shear ) * r2d ) + 'deg' : false,
-
-				scaleX     = ( ( d.scaleX > ( 1 + limit ) ) || ( d.scaleX < ( 1 - limit ) ) ) ? s( d.scaleX ) : false,
-				scaleY     = ( ( d.scaleY > ( 1 + limit ) ) || ( d.scaleY < ( 1 - limit ) ) ) ? s( d.scaleY ) : false,
-
-				translateX = ( ( d.translateX > limit ) || ( d.translateX < -limit ) ) ? s( d.translateX ) + 'px' : false,
-				translateY = ( ( d.translateY > limit ) || ( d.translateY < -limit ) ) ? s( d.translateY ) + 'px' : false,
-
-				scale, translate,
-
-				string
-			;
-
-			if ( rotate === '360deg' ) {
-				rotate = false;
-			}
-
-			if ( ( scaleX !== false && scaleY !== false ) ) {
-				if ( scaleX === scaleY ) {
-					scale = scaleX;
-				}
-
-				else {
-					scale = scaleX + ',' + scaleY;
-				}
-				
-				scaleX = scaleY = false;
-			}
-
-			if ( ( translateX !== false ) && ( translateY !== false ) ) {
-				translate = translateX + ',' + translateY;
-				translateX = translateY = false;
-			}
-
-			if ( d ) {
-				string = [ (  translate  ? ( 'translate('  + translate  + ')' ) : '' ), // no unary operator here because it contains a non-numeric (the comma)
-				           (  translateX ? ( 'translateX(' + translateX + ')' ) : '' ),
-				           (  translateY ? ( 'translateY(' + translateY + ')' ) : '' ),
-				           (  rotate     ? ( 'rotate('     + rotate     + ')' ) : '' ),
-				           (  scale      ? ( 'scale('      + scale      + ')' ) : '' ),
-				           (  skewX      ? ( 'skewX('      + skewX      + ')' ) : '' ),
-				           (  scaleX     ? ( 'scaleX('     + scaleX     + ')' ) : '' ),
-				           (  scaleY     ? ( 'scaleY('     + scaleY     + ')' ) : '' ) ].join( ' ' );
-			
-			} else { // if matrix can't be decomposed, return as is
-				string = 'matrix(' + m.join( ',' ) + ')';
-			}
-
-			return string;
 		}
 	};
 
