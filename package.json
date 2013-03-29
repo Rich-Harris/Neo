@@ -1,0 +1,25 @@
+{
+  "name": "neo",
+  "version": "0.1.0",
+  "description": "A matrix manipulation library that tries to explain what the hell's going on",
+  "main": "Neo.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rich-Harris/Neo.git"
+  },
+  "keywords": [
+    "matrix",
+    "2d",
+    "graphics"
+  ],
+  "author": "Rich Harris",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "910bfb98be7415b7a12552e6e44ecb06c413bde2"
+}
